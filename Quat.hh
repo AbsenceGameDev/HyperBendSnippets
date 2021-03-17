@@ -113,7 +113,7 @@ class Quat {
   invQuat()
   {
     auto sq_sum = squaredCompSums();
-    return {conjugateQuat / sq_sum * sq_sum};
+    return {conjugateQuat() / (sq_sum * sq_sum)};
   }
 
   /**
