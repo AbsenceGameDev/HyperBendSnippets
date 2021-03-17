@@ -113,7 +113,7 @@ class Quat {
   invQuat()
   {
     auto sq_sum = squaredCompSums();
-    return {conjugateQuat() / (sq_sum * sq_sum)};
+    return Quat{conjugateQuat() / (sq_sum * sq_sum)};
   }
 
   /**
@@ -221,19 +221,19 @@ class Quat {
   void
   setUnit()
   {
-    x = 0.0F;
-    y = 0.0F;
-    z = 0.0F;
-    w = 0.0F;
+    x = 0.0f;
+    y = 0.0f;
+    z = 0.0f;
+    w = 0.0f;
 
     if constexpr (SWITCH == 0) {
-      x = 1.0F;
+      x = 1.0f;
     } else if constexpr (SWITCH == 1) {
-      y = 1.0F;
+      y = 1.0f;
     } else if constexpr (SWITCH == 2) {
-      z = 1.0F;
+      z = 1.0f;
     } else if constexpr (SWITCH == 3) {
-      w = 1.0F;
+      w = 1.0f;
     }
   }
 
