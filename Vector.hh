@@ -41,7 +41,7 @@ class Vector2 {
   Vector2
   iscalp(int b)
   {
-    return Vector2{static_cast<float>(x * b), static_cast<float>(y * b)};
+    return Vector2{x * static_cast<float>(b), y * static_cast<float>(b)};
   }
 
   Vector2
