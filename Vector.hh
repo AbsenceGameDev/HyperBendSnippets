@@ -32,30 +32,31 @@ class Vector2 {
    * 2 * ((dotp(b,a) /  sqr(sqrt(v|))) * v|)
    * reflected = (K * u) - u
    **/
-  float
+  [[nodiscard]] float
   dotp(Vector2 vector_b)
   {
     return (x * vector_b.x) + (y * vector_b.y);
   }
 
-  Vector2
+  [[nodiscard]] Vector2
   iscalp(int b)
   {
     return Vector2{x * static_cast<float>(b), y * static_cast<float>(b)};
   }
 
-  Vector2
+  [[nodiscard]] Vector2
   fscalp(float b)
   {
     return Vector2{(x * b), (y * b)};
   }
 
-  Vector2
+  [[nodiscard]] Vector2
   vecsub(Vector2 & vector_b)
   {
     return Vector2{(x - vector_b.x), (y - vector_b.y)};
   }
-  Vector2
+  
+  [[nodiscard]] Vector2
   reflected_vec(Vector2 & reflect_against)
   {
     auto vdist_sqr = (x * x) + (y * y);
