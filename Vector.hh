@@ -21,6 +21,7 @@ class Vector2 {
   explicit Vector2(float b) : x(b), y(b) {}
   explicit Vector2(float x, float y) : x(x), y(y) {}
 
+   // Vector algebra
   /** Vector reflection, much simpler to create my own instead of bloating with
    * reflected = 2projv(u) - u;
    * Where:
@@ -33,42 +34,35 @@ class Vector2 {
    * reflected = (K * u) - u
    **/
   [[nodiscard]] float
-  dotp(Vector2 vector_b)
+  dotp(Vector2 vector_b) const
   {
     return (x * vector_b.x) + (y * vector_b.y);
   }
 
   [[nodiscard]] Vector2
-  iscalp(int b)
+  iscalp(int b) // Int scalar product
   {
     return Vector2{x * static_cast<float>(b), y * static_cast<float>(b)};
   }
 
   [[nodiscard]] Vector2
-  fscalp(float b)
+  fscalp(float b) // Float scalar product
   {
     return Vector2{(x * b), (y * b)};
   }
 
   [[nodiscard]] Vector2
-  vecsub(Vector2 & vector_b)
+  vecSub(Vector2 & vector_b)
   {
     return Vector2{(x - vector_b.x), (y - vector_b.y)};
   }
   
   [[nodiscard]] Vector2
-  reflected_vec(Vector2 & reflect_against)
+  reflected(Vector2 & reflect_against)
   {
     auto vdist_sqr = (x * x) + (y * y);
     auto projv_u = this->fscalp(this->dotp(reflect_against) / vdist_sqr);
     return projv_u.iscalp(0x2).vecsub(reflect_against);
-  }
-
-  // Vector algebra
-  [[nodiscard]] float
-  dot(Vector2 & b) const
-  {
-    return x * b.x + y * b.y;
   }
 
   [[nodiscard]] float
@@ -306,7 +300,7 @@ class Vector3 {
 
   // Vector operations
   [[nodiscard]] float
-  dot(const Vector3 & b) const
+  dotp(const Vector3 & b) const
   {
     return (x * b.x) + (y * b.y) + (z * b.z);
   }
@@ -342,7 +336,7 @@ class Vector3 {
   [[nodiscard]] float
   angle(const Vector3 & b) const
   {
-    return std::acos(normalized().dot(b.normalized()));
+    return std::acos(normalized().dotp(b.normalized()));
   }
 
   void
@@ -656,7 +650,7 @@ class Vector4 {
   }
 
   [[nodiscard]] float
-  dot(const Vector4 & b) const
+  dotp(const Vector4 & b) const
   {
     return (x * b.x) + (y * b.y) + (z * b.z) + (w * b.w);
   }
