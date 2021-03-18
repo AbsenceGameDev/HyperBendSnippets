@@ -36,7 +36,7 @@ class Quat {
     }
 
     Vector3 rot_axis = vector_a.cross(vector_b);
-    float   rad_angle = vector_a.dot(vector_b);
+    float   rad_angle = vector_a.dotp(vector_b);
 
     if ((rad_angle < 1e-6) && (rad_angle > -(1e-6))) {
       x = y = z = 0.0;
@@ -65,7 +65,7 @@ class Quat {
       vector_b.normalize();
 
     Vector3 rot_axis = vector_b.cross(vector_a);
-    float   rad_angle = vector_a.dot(vector_b);
+    float   rad_angle = vector_a.dotp(vector_b);
 
     if ((rad_angle < 1e-6) && (rad_angle > -(1e-6))) {
       x = y = z = 0.0;
@@ -181,7 +181,7 @@ class Quat {
     return Quat{mul3comp.x,
                 mul3comp.y,
                 mul3comp.z,
-                (w * b.w) - a_as_vec3.dot(b_as_vec3)};
+                (w * b.w) - a_as_vec3.dotp(b_as_vec3)};
   }
 
   // General static inits
@@ -284,7 +284,7 @@ class Quat {
     return Quat{mul3comp.x,
                 mul3comp.y,
                 mul3comp.z,
-                (w * b.w) - a_as_vec3.dot(b_as_vec3)};
+                (w * b.w) - a_as_vec3.dotp(b_as_vec3)};
   }
 
   void
@@ -352,7 +352,7 @@ class Quat {
     *this = Quat{mul3comp.x,
                  mul3comp.y,
                  mul3comp.z,
-                 (w * b.w) - a_as_vec3.dot(b_as_vec3)};
+                 (w * b.w) - a_as_vec3.dotp(b_as_vec3)};
   }
 
   Quat
