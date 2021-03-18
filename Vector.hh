@@ -83,25 +83,15 @@ class Vector2 {
   }
 
   // Normalization
-  void
-  normalize()
+  void 
+  normalize() // Unsafe
   {
     (*this) /= mag();
   }
-  void
-  normalizeSafe()
-  {
-    (*this) /= (mag() + FLT_EPSILON);
-  }
   [[nodiscard]] Vector2
-  normalized() const
+  normalized() const // Unsafe
   {
     return (*this) / mag();
-  }
-  [[nodiscard]] Vector2
-  normalizedSafe() const
-  {
-    return (*this) / (mag() + FLT_EPSILON);
   }
   [[nodiscard]] bool
   isNorm() const
@@ -343,20 +333,10 @@ class Vector3 {
   {
     (*this) /= mag();
   }
-  void
-  normalizeSafe()
-  {
-    (*this) /= (mag() + FLT_EPSILON);
-  }
   [[nodiscard]] Vector3
   normalized() const
   {
     return (*this) / mag();
-  }
-  [[nodiscard]] Vector3
-  normalizedSafe() const
-  {
-    return (*this) / (mag() + FLT_EPSILON);
   }
 
   [[nodiscard]] float
@@ -364,11 +344,7 @@ class Vector3 {
   {
     return std::acos(normalized().dot(b.normalized()));
   }
-  [[nodiscard]] float
-  angleSafe(const Vector3 & b) const
-  {
-    return std::acos(normalizedSafe().dot(b.normalizedSafe()));
-  }
+
   void
   clipMag(float clipm)
   {
